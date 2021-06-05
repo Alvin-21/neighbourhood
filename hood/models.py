@@ -10,6 +10,18 @@ class Neighbourhood(models.Model):
     occupants = models.PositiveIntegerField(default=0)
     admin = models.ForeignKey(User, on_delete=models.CASCADE, is_staff=True)
 
+    def __str__(self):
+        return self.hood_name
+
+    def save_hood(self):
+        self.save()
+
+    @classmethod
+    def create_neighbourhood(cls, hood_name: str, hood_location: str, occupants: int, admin: User):
+        hood = Neighbourhood(hood_name=hood_name, hood_location=hood_location, occupants=occupants, admin=admin)
+        hood.save_hood()
+
+
 
 class User(models.Model):
     image = CloudinaryField('image', null=True)
