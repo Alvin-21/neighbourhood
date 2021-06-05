@@ -49,3 +49,21 @@ class Business(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     neighbourhood_id = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE, related_name='business_neighbourhood_id')
     email = models.EmailField()
+
+    def __str__(self):
+        return self.business_name
+
+    def create_business(self):
+        self.save()
+
+    def delete_business(self):
+        self.delete()
+
+    @classmethod
+    def find_business(cls, business_id):
+        business = cls.objects.get(id=business_id)
+        return business
+
+    @classmethod
+    def update_business(cls, business_id, new_business_name):
+        business = cls.objects.get(id=business_id).update(business_name=new_business_name)
