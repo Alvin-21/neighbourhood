@@ -18,3 +18,10 @@ class User(models.Model):
     neighbourhood_id = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE)
     email = models.EmailField()
     bio = models.CharField(max_length=200)
+
+
+class Business(models.Model):
+    business_name = models.CharField(max_length=50)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    neighbourhood_id = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE, related_name='business_neighbourhood_id')
+    email = models.EmailField()
