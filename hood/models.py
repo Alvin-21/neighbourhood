@@ -16,6 +16,9 @@ class Neighbourhood(models.Model):
     def save_hood(self):
         self.save()
 
+    def delete_hood(self):
+        self.delete()
+
     @classmethod
     def create_neighbourhood(cls, hood_name: str, hood_location: str, occupants: int, admin: User):
         hood = Neighbourhood(hood_name=hood_name, hood_location=hood_location, occupants=occupants, admin=admin)
