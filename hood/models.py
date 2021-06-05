@@ -35,7 +35,7 @@ class Neighbourhood(models.Model):
 
 
 
-class User(models.Model):
+class Profile(models.Model):
     image = CloudinaryField('image', null=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
@@ -67,3 +67,11 @@ class Business(models.Model):
     @classmethod
     def update_business(cls, business_id, new_business_name):
         business = cls.objects.get(id=business_id).update(business_name=new_business_name)
+
+
+class Post(models.Model):
+    title = models.CharField(max_length=50)
+    context = models.CharField(max_length=1500)
+    pub_date = models.DateTimeField(auto_now_add=True)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    hood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE)
