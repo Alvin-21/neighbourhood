@@ -24,6 +24,11 @@ class Neighbourhood(models.Model):
         hood = Neighbourhood(hood_name=hood_name, hood_location=hood_location, occupants=occupants, admin=admin)
         hood.save_hood()
 
+    @classmethod
+    def find_neigborhood(cls, neigborhood_id):
+        hood = cls.objects.get(id=neigborhood_id)
+        return hood
+
 
 
 class User(models.Model):
