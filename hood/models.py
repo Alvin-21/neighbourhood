@@ -29,6 +29,10 @@ class Neighbourhood(models.Model):
         hood = cls.objects.get(id=neigborhood_id)
         return hood
 
+    @classmethod
+    def update_neighborhood(cls, neigborhood_id, new_hood_name: str):
+        hood = cls.objects.get(id=neigborhood_id).update(hood_name=new_hood_name)
+
 
 
 class User(models.Model):
