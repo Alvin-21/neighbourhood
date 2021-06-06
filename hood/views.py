@@ -14,3 +14,6 @@ def hood(request, hood_id):
     posts = Post.objects.filter(hood=hood)
     return render(request, 'hood.html', {"hood": single_hood, "business": business, "posts": posts})
 
+def profile(request, profile_id):
+    profile = Profile.objects.get(id=profile_id)
+    return render(request, 'profile.html', {"profile": profile})
