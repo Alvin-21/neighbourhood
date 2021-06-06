@@ -33,3 +33,8 @@ class NeighbourhoodTest(TestCase):
         hood = Neighbourhood.create_neighbourhood('Bywater', 'Nairobi', 8, self.user)
         hood_len = Neighbourhood.objects.all()
         self.assertTrue(len(hood_len) > 0)
+
+    def test_find_neigborhood(self):
+        self.hood.save_hood()
+        hood = Neighbourhood.find_neigborhood(self.hood.id)
+        self.assertTrue(hood, self.hood)
