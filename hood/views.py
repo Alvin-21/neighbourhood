@@ -5,4 +5,4 @@ from .models import *
 # Create your views here.
 
 def index(request):
-    return redirect(request, 'index.html')
+    return render(request, 'index.html')
