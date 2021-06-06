@@ -7,7 +7,7 @@ from .forms import *
 
 def index(request):
     hood = Neighbourhood.objects.all()
-    return render(request, 'index.html', {"hood": hood})
+    return render(request, 'index.html', {"hoods": hood})
 
 def hood(request, hood_id):
     single_hood = Neighbourhood.objects.get(id=hood_id)

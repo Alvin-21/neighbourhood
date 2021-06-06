@@ -1,1 +1,29 @@
 {%extends 'base.html'%}
+
+{% block content %}
+
+<div class="container">
+    <h1>WELCOME TO YSL HOODS</h1>
+    <P>Here, you are able to view different neighbournhoods, join any of your choosing and view detailed information about the neighbournhood.</P>
+    <div class="card-columns">
+        {% for hood in hoods %}
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{hood.hood_name}}</h5>
+                <p class="card-text">Location: {{hood.hood_location}}</p>
+                <p class="card-text">{{hood.occupants}} Ocuppant(s)</p>
+            </div>
+            <div class="card-footer card-bg">
+                {% if request.user.profile.neighbourhood == hood %}
+                <a href="#" class="btn btn-outline-danger btn-sm">Leave Neighbourhood</a>
+                {% elif not request.user.profile.neighbourhood %}
+                <a href="#" class="btn btn-success btn-sm">Join Neighbourhood</a>
+                {% endif %}
+                <a class="btn btn-sm" href="#">View Neighbourhood</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{%endblock%}
