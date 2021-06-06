@@ -22,3 +22,9 @@ class NeighbourhoodTest(TestCase):
         self.hood.save_hood()
         hood = Neighbourhood.objects.all()
         self.assertTrue(len(hood) > 0)
+
+    def test_delete_method(self):
+        self.hood.save_hood()
+        self.hood.delete_hood()
+        hood = Neighbourhood.objects.all()
+        self.assertTrue(len(hood) == 0)
