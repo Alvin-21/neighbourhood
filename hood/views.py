@@ -66,3 +66,17 @@ def create_post(request, hood_id):
         form = PostForm()
 
     return render(request, 'new_post.html', {'form': form})
+
+def edit_profile(request, profile_id):
+    profile = Profile.objects.get(id=profile_id)
+
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            edit_profile = form.save(commit=False)
+            edit_profile.save()
+            return redirect('profile', profile.id)
+    else:
+        form = EditProfileForm()
+    return render(request, 'edit_profile.html', {"form": form})
