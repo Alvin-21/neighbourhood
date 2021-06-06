@@ -5,7 +5,7 @@
 <div class="container">
     <h1>WELCOME TO YSL HOODS</h1>
     <P>Here, you are able to view different neighbourhoods, join any of your choosing and view detailed information about the neighbourhood.</P>
-    <a href="#" class="btn btn-outline-info btn-sm" style="margin-bottom: 10px;">Create Neighbourhood</a>
+    <a href="{% url 'new_neighbourhood'%}" class="btn btn-outline-info btn-sm" style="margin-bottom: 10px;">Create Neighbourhood</a>
     <div class="card-columns">
         {% for hood in hoods %}
         <div class="card">
