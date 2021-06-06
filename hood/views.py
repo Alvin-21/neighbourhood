@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, Http404
 from .models import *
 from .forms import *
@@ -80,3 +80,9 @@ def edit_profile(request, profile_id):
     else:
         form = EditProfileForm()
     return render(request, 'edit_profile.html', {"form": form})
+
+def join_hood(request, hood_id):
+    hood = get_object_or_404(Neighbourhood, id=hood_id)
+    request.user.profile.neighbourhood = hood
+    request.user.profile.save()
+    return redirect('hood')
