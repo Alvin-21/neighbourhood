@@ -11,8 +11,8 @@ def index(request):
 
 def hood(request, hood_id):
     single_hood = Neighbourhood.objects.get(id=hood_id)
-    business = Business.objects.filter(neighbourhood_id=hood)
-    posts = Post.objects.filter(hood=hood)
+    business = Business.objects.filter(neighbourhood_id=single_hood)
+    posts = Post.objects.filter(hood=single_hood)
     return render(request, 'hood.html', {"hood": single_hood, "business": business, "posts": posts})
 
 def profile(request, profile_id):
@@ -49,3 +49,20 @@ def create_business(request, hood_id):
         form = BusinessForm()
 
     return render(request, 'new_business.html', {"form": form})
+
+def create_post(request, hood_id):
+    hood = Neighbourhood.objects.get(id=hood_id)
+
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.hood = hood
+            post.profile = request.user.profile
+            post.save()
+            return redirect('hood', hood.id)
+    else:
+        form = PostForm()
+
+    return render(request, 'new_post.html', {'form': form})
