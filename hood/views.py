@@ -83,8 +83,16 @@ def edit_profile(request, profile_id):
 
 def join_hood(request, hood_id):
     hood = get_object_or_404(Neighbourhood, id=hood_id)
-    request.user.profile.neighbourhood = hood
+    request.user.profile.neighbourhood_id = hood
     request.user.profile.save()
     occupants = hood.occupants + 1
+    hood.save()
+    return redirect('hood')
+
+def leave_hood(request, hood_id):
+    hood = get_object_or_404(Neighbourhood, id=hood_id)
+    request.user.profile.neighbourhood_id = None
+    request.user.profile.save()
+    occupants = hood.occupants - 1
     hood.save()
     return redirect('hood')

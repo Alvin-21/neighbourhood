@@ -39,7 +39,7 @@ class Profile(models.Model):
     image = CloudinaryField('image', null=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    neighbourhood_id = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE)
+    neighbourhood_id = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE, null=True)
     email = models.EmailField()
     bio = models.CharField(max_length=200, null=True)
 
