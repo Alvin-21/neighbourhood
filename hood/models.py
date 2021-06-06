@@ -43,6 +43,9 @@ class Profile(models.Model):
     email = models.EmailField()
     bio = models.CharField(max_length=200)
 
+    def __str__(self):
+        return self.first_name + " " + self.last_name
+
 
 class Business(models.Model):
     business_name = models.CharField(max_length=50)
@@ -75,3 +78,6 @@ class Post(models.Model):
     pub_date = models.DateTimeField(auto_now_add=True)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     hood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
