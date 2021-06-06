@@ -10,4 +10,5 @@ urlpatterns = [
     re_path(r'^new/post/hood-id/(\d+)$', views.create_post, name='new_post'),
     re_path(r'^edit/profile/(\d+)$', views.edit_profile, name='edit_profile'),
     re_path(r'^join/hood/(\d+)$', views.join_hood, name='join_hood'),
+    re_path(r'^leave/hood/(\d+)$', views.leave_hood, name='leave_hood'),
 ]

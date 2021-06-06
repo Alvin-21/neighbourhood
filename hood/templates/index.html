@@ -16,7 +16,7 @@
             </div>
             <div class="card-footer card-bg">
                 {% if request.user.profile.neighbourhood == hood %}
-                <a href="#" class="btn btn-outline-danger btn-sm">Leave Neighbourhood</a>
+                <a href="{% url 'leave_hood' hood.id%}" class="btn btn-outline-danger btn-sm">Leave Neighbourhood</a>
                 {% elif not request.user.profile.neighbourhood %}
                 <a href="{% url 'join_hood' hood.id%}" class="btn btn-success btn-sm">Join Neighbourhood</a>
                 {% endif %}
