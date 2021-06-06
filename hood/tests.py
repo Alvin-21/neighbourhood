@@ -28,3 +28,8 @@ class NeighbourhoodTest(TestCase):
         self.hood.delete_hood()
         hood = Neighbourhood.objects.all()
         self.assertTrue(len(hood) == 0)
+
+    def test_create_neighbourhood(self):
+        hood = Neighbourhood.create_neighbourhood('Bywater', 'Nairobi', 8, self.user)
+        hood_len = Neighbourhood.objects.all()
+        self.assertTrue(len(hood_len) > 0)
