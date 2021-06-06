@@ -44,3 +44,24 @@ class NeighbourhoodTest(TestCase):
         self.hood.update_neighborhood(self.hood.id, 'Midcity')
         hood_name = Neighbourhood.objects.filter(hood_name='Midcity')
         self.assertTrue(len(hood_name) == 1)
+
+
+class BusinessTest(TestCase):
+    def tearDown(self):
+        Neighbourhood.objects.all().delete()
+        Profile.objects.all().delete()
+        Business.objects.all().delete()
+        Post.objects.all().delete()
+
+    def setUp(self):
+        self.user = User.objects.create_user('john', email=None, password='secretpassword')
+        self.hood = Neighbourhood(hood_name='Orleans', hood_location='Nairobi', occupants=3, admin=self.user)
+        self.hood.save_hood()
+        self.john = Profile(first_name='John', last_name='Doe', neighbourhood_id=self.hood, email='john@test.com')
+        self.john.save()
+        self.business = Business(business_name='pocha', user=self.john, neighbourhood_id=self.hood, email='pocha@test.com')
+
+    def test_instance(self):
+        self.assertTrue(isinstance(self.business, Business))
+
+    
