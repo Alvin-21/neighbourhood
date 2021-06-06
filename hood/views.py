@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404
 from .models import *
+from .forms import *
 
 # Create your views here.
 
@@ -17,3 +18,4 @@ def hood(request, hood_id):
 def profile(request, profile_id):
     profile = Profile.objects.get(id=profile_id)
     return render(request, 'profile.html', {"profile": profile})
+

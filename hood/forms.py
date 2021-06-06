@@ -13,7 +13,7 @@ class PostForm(forms.ModelForm):
         exclude = ['profile', 'hood']
 
 
-class NeighbourHoodForm(forms.ModelForm):
+class NeighbourhoodForm(forms.ModelForm):
     class Meta:
         model = Neighbourhood
         exclude = ['admin']
