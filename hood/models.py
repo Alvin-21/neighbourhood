@@ -31,7 +31,7 @@ class Neighbourhood(models.Model):
 
     @classmethod
     def update_neighborhood(cls, neigborhood_id, new_hood_name: str):
-        hood = cls.objects.get(id=neigborhood_id).update(hood_name=new_hood_name)
+        hood = cls.objects.filter(id=neigborhood_id).update(hood_name=new_hood_name)
 
 
 

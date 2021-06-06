@@ -38,3 +38,9 @@ class NeighbourhoodTest(TestCase):
         self.hood.save_hood()
         hood = Neighbourhood.find_neigborhood(self.hood.id)
         self.assertTrue(hood, self.hood)
+
+    def test_update_neighborhood(self):
+        self.hood.save_hood()
+        self.hood.update_neighborhood(self.hood.id, 'Midcity')
+        hood_name = Neighbourhood.objects.filter(hood_name='Midcity')
+        self.assertTrue(len(hood_name) == 1)
