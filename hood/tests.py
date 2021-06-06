@@ -75,3 +75,7 @@ class BusinessTest(TestCase):
         business = Business.objects.all()
         self.assertTrue(len(business) == 0)
     
+    def test_find_business(self):
+        self.business.create_business()
+        business = Business.find_business(self.business.id)
+        self.assertTrue(business, self.business)
