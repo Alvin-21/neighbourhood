@@ -7,7 +7,7 @@
     <h2>Location: {{hood.hood_location}}</h2>
     <h2>{{hood.occupants}} Ocuppant(s)</h2>
     <hr>
-    <a href="#" class="btn btn-primary btn-sm" style="margin-bottom: 10px;">Add Business</a>
+    <a href="{% url 'new_business' hood.id%}" class="btn btn-primary btn-sm" style="margin-bottom: 10px;">Add Business</a>
     <div class="card-deck">
         {% for business in businesses%}
         <div class="card">

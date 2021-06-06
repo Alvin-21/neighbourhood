@@ -44,7 +44,7 @@ def create_business(request, hood_id):
             business.neighbourhood_id = neighbourhood
             business.user = request.user.profile
             business.save()
-            return redirect('hood', neighbourhood.id)
+        return redirect('hood', neighbourhood.id)
     else:
         form = BusinessForm()
 
@@ -61,7 +61,7 @@ def create_post(request, hood_id):
             post.hood = hood
             post.profile = request.user.profile
             post.save()
-            return redirect('hood', hood.id)
+        return redirect('hood', hood.id)
     else:
         form = PostForm()
 
@@ -76,7 +76,7 @@ def edit_profile(request, profile_id):
         if form.is_valid():
             edit_profile = form.save(commit=False)
             edit_profile.save()
-            return redirect('profile', profile.id)
+        return redirect('profile', profile.id)
     else:
         form = EditProfileForm()
     return render(request, 'edit_profile.html', {"form": form})
