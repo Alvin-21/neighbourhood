@@ -69,7 +69,7 @@ class Business(models.Model):
 
     @classmethod
     def update_business(cls, business_id, new_business_name):
-        business = cls.objects.get(id=business_id).update(business_name=new_business_name)
+        business = cls.objects.filter(id=business_id).update(business_name=new_business_name)
 
 
 class Post(models.Model):

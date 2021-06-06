@@ -79,3 +79,9 @@ class BusinessTest(TestCase):
         self.business.create_business()
         business = Business.find_business(self.business.id)
         self.assertTrue(business, self.business)
+
+    def test_update_business(self):
+        self.business.create_business()
+        self.business.update_business(self.business.id, 'carabao')
+        business_name = Business.objects.filter(business_name='carabao')
+        self.assertTrue(len(business_name) == 1)
