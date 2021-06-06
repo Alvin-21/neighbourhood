@@ -19,7 +19,7 @@
         {% endfor%}
     </div>
     <hr>
-    <a href="#" class="btn btn-warning btn-sm" style="margin-bottom: 10px;">Add Post</a>
+    <a href="{% url 'new_post' hood.id%}" class="btn btn-warning btn-sm" style="margin-bottom: 10px;">Add Post</a>
     <div class="card-deck">
         {% for post in posts%}
         <div class="card">
