@@ -69,4 +69,9 @@ class BusinessTest(TestCase):
         business = Business.objects.all()
         self.assertTrue(len(business) > 0)
 
+    def test_delete_method(self):
+        self.business.create_business()
+        self.business.delete_business()
+        business = Business.objects.all()
+        self.assertTrue(len(business) == 0)
     
