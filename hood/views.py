@@ -19,3 +19,17 @@ def profile(request, profile_id):
     profile = Profile.objects.get(id=profile_id)
     return render(request, 'profile.html', {"profile": profile})
 
+def create_hood(request):
+    if request.method == 'POST':
+        form = NeighbourhoodForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            hood = form.save(commit=False)
+            hood.admin = request.user
+            hood.save()
+
+        return redirect('hood')
+    else:
+        form = NeighbourhoodForm()
+
+    return render(request, 'new_neighbourhood.html', {'form': form})
