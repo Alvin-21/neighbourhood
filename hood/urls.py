@@ -8,4 +8,5 @@ urlpatterns = [
     re_path(r'^new/neighbourhood$', views.create_hood, name='new_neighbourhood'),
     re_path(r'^new/business/hood-id/(\d+)$', views.create_business, name='new_business'),
     re_path(r'^new/post/hood-id/(\d+)$', views.create_post, name='new_post'),
+    re_path(r'^edit/profile/(\d+)$', views.edit_profile, name='edit_profile'),
 ]
