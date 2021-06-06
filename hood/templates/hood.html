@@ -1,0 +1,38 @@
+{%extends 'base.html'%}
+
+{% block content %}
+
+<div class="container">
+    <h1>{{hood.hood_name}}</h1>
+    <h2>Location: {{hood.hood_location}}</h2>
+    <h2>{{hood.occupants}} Ocuppant(s)</h2>
+    <hr>
+    <a href="#" class="btn btn-primary btn-sm">Add Business</a>
+    <div class="card-deck">
+        {% for business in businesses%}
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{business.business_name}}</h5>
+                <p class="card-text">Business Email: {{business.email}}</p>
+            </div>
+        </div>
+        {% endfor%}
+    </div>
+    <hr>
+    <a href="#" class="btn btn-secondary btn-sm">Add Post</a>
+    <div class="card-deck">
+        {% for post in posts%}
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{post.title}}</h5>
+                <p class="card-text">{{post.context}}</p>
+            </div>
+            <div class="card-footer">
+                <p class="card-text"><small>Posted on {{post.pub_date}}</small></p>
+            </div>
+        </div>
+        {% endfor%}
+    </div>
+</div>
+
+{%endblock%}

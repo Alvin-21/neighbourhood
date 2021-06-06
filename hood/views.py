@@ -13,7 +13,7 @@ def hood(request, hood_id):
     single_hood = Neighbourhood.objects.get(id=hood_id)
     business = Business.objects.filter(neighbourhood_id=single_hood)
     posts = Post.objects.filter(hood=single_hood)
-    return render(request, 'hood.html', {"hood": single_hood, "business": business, "posts": posts})
+    return render(request, 'hood.html', {"hood": single_hood, "businesses": business, "posts": posts})
 
 def profile(request, profile_id):
     profile = Profile.objects.get(id=profile_id)
