@@ -8,7 +8,7 @@ class Neighbourhood(models.Model):
     hood_name = models.CharField(max_length=50)
     hood_location = models.CharField(max_length=50)
     occupants = models.PositiveIntegerField(default=0)
-    admin = models.ForeignKey(User, on_delete=models.CASCADE, is_staff=True)
+    admin = models.ForeignKey(User(is_staff=True), on_delete=models.CASCADE)
 
     def __str__(self):
         return self.hood_name
