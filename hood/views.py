@@ -27,9 +27,25 @@ def create_hood(request):
             hood = form.save(commit=False)
             hood.admin = request.user
             hood.save()
-
-        return redirect('hood')
+            return redirect('hood')
     else:
         form = NeighbourhoodForm()
 
     return render(request, 'new_neighbourhood.html', {'form': form})
+
+def create_business(request, hood_id):
+    neighbourhood = Neighbourhood.objects.get(id=hood_id)
+
+    if request.method == 'POST':
+        form = BusinessForm(request.POST)
+
+        if form.is_valid():
+            business = form.save(commit=False)
+            business.neighbourhood_id = neighbourhood
+            business.user = request.user.profile
+            business.save()
+            return redirect('hood', neighbourhood.id)
+    else:
+        form = BusinessForm()
+
+    return render(request, 'new_business.html', {"form": form})
