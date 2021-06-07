@@ -2,23 +2,28 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, Http404
 from .models import *
 from .forms import *
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+@login_required(login_url='/accounts/login/')
 def index(request):
     hood = Neighbourhood.objects.all()
     return render(request, 'index.html', {"hoods": hood})
 
+@login_required(login_url='/accounts/login/')
 def hood(request, hood_id):
     single_hood = Neighbourhood.objects.get(id=hood_id)
     business = Business.objects.filter(neighbourhood_id=single_hood)
     posts = Post.objects.filter(hood=single_hood)
     return render(request, 'hood.html', {"hood": single_hood, "businesses": business, "posts": posts})
 
+@login_required(login_url='/accounts/login/')
 def profile(request, profile_id):
     profile = Profile.objects.get(id=profile_id)
     return render(request, 'profile.html', {"profile": profile})
 
+@login_required(login_url='/accounts/login/')
 def create_hood(request):
     if request.method == 'POST':
         form = NeighbourhoodForm(request.POST, request.FILES)
@@ -33,6 +38,7 @@ def create_hood(request):
 
     return render(request, 'new_neighbourhood.html', {'form': form})
 
+@login_required(login_url='/accounts/login/')
 def create_business(request, hood_id):
     neighbourhood = Neighbourhood.objects.get(id=hood_id)
 
@@ -50,6 +56,7 @@ def create_business(request, hood_id):
 
     return render(request, 'new_business.html', {"form": form})
 
+@login_required(login_url='/accounts/login/')
 def create_post(request, hood_id):
     hood = Neighbourhood.objects.get(id=hood_id)
 
@@ -67,6 +74,7 @@ def create_post(request, hood_id):
 
     return render(request, 'new_post.html', {'form': form})
 
+@login_required(login_url='/accounts/login/')
 def edit_profile(request, profile_id):
     profile = Profile.objects.get(id=profile_id)
 
@@ -81,6 +89,7 @@ def edit_profile(request, profile_id):
         form = EditProfileForm()
     return render(request, 'edit_profile.html', {"form": form})
 
+@login_required(login_url='/accounts/login/')
 def join_hood(request, hood_id):
     hood = get_object_or_404(Neighbourhood, id=hood_id)
     request.user.profile.neighbourhood_id = hood
@@ -89,6 +98,7 @@ def join_hood(request, hood_id):
     hood.save()
     return redirect('hood')
 
+@login_required(login_url='/accounts/login/')
 def leave_hood(request, hood_id):
     hood = get_object_or_404(Neighbourhood, id=hood_id)
     request.user.profile.neighbourhood_id = None
