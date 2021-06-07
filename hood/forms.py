@@ -22,4 +22,4 @@ class NeighbourhoodForm(forms.ModelForm):
 class EditProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        exclude = ['neighbourhood_id']
+        exclude = ['neighbourhood_id', 'user']

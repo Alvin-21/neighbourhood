@@ -21,6 +21,7 @@ def hood(request, hood_id):
 
 @login_required(login_url='/accounts/login/')
 def profile(request, profile_id):
+    profile_id += 5
     profile = Profile.objects.get(id=profile_id)
     return render(request, 'profile.html', {"profile": profile})
 
