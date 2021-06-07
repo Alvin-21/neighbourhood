@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 from .models import *
 from .forms import *
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 
 # Create your views here.
 
@@ -95,8 +96,9 @@ def join_hood(request, hood_id):
     request.user.profile.neighbourhood_id = hood
     request.user.profile.save()
     occupants = hood.occupants + 1
+    hood.occupants = occupants
     hood.save()
-    return redirect('hood')
+    return HttpResponseRedirect(reverse('homepage'))
 
 @login_required(login_url='/accounts/login/')
 def leave_hood(request, hood_id):
@@ -104,5 +106,6 @@ def leave_hood(request, hood_id):
     request.user.profile.neighbourhood_id = None
     request.user.profile.save()
     occupants = hood.occupants - 1
+    hood.occupants = occupants
     hood.save()
-    return redirect('hood')
+    return HttpResponseRedirect(reverse('homepage'))

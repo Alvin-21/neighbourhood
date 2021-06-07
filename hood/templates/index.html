@@ -15,9 +15,9 @@
                 <p class="card-text">{{hood.occupants}} Ocuppant(s)</p>
             </div>
             <div class="card-footer card-bg">
-                {% if request.user.profile.neighbourhood == hood %}
+                {% if request.user.profile.neighbourhood_id == hood %}
                 <a href="{% url 'leave_hood' hood.id%}" class="btn btn-outline-danger btn-sm">Leave Neighbourhood</a>
-                {% elif not request.user.profile.neighbourhood %}
+                {% elif not request.user.profile.neighbourhood_id %}
                 <a href="{% url 'join_hood' hood.id%}" class="btn btn-success btn-sm">Join Neighbourhood</a>
                 {% endif %}
                 <a class="btn btn-sm btn-primary" href="{% url 'hood' hood.id%}" style="margin-top: 10px;">View Neighbourhood</a>
