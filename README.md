@@ -8,10 +8,6 @@
 </tr>
 </table>
 
-## Demo
-
-Here is a working live demo : https://yslhoods.herokuapp.com/
-
 ### Landing Page
 
 Currently it is working properly, and displaying the neighbourhoods.

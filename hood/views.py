@@ -33,7 +33,7 @@ def create_hood(request):
             hood = form.save(commit=False)
             hood.admin = request.user
             hood.save()
-            return redirect('hood')
+            return redirect('hood', hood.id)
     else:
         form = NeighbourhoodForm()
 
